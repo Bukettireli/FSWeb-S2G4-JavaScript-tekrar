@@ -65,10 +65,11 @@ console.log('Çemberin Çevresi (5):', CemberinCevresi(5));
 	4. Hesaplanan çemberin alanı döndürülecektir.
 */
 
-function CemberinAlani(/* kodlar buraya */) {
-  /* kodlar buraya */
+function CemberinAlani(yaricap, piDegeri) {
+  return piDegeri * Math.pow(yaricap, 2);
 }
 
+console.log('Çemberin Alanı (15):', CemberinAlani(15, pi));
 /* (Oto test yok) Yukarıdaki CemberinAlani fonksiyonunu yarıçap = 15 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
 
 /* 	GÖREV 3:
@@ -90,6 +91,8 @@ function CemberinAlani(/* kodlar buraya */) {
 
 /*  (oto test yok) sayilar dizisi içinde kaç adet sayı olduğunu konsola yazdırın */
 
+console.log('Sayılar dizisindeki eleman sayısı:', sayilar.length);
+
 let ucetambolunenler,
   enkucuk,
   enbuyuk,
@@ -99,30 +102,57 @@ let ucetambolunenler,
   tekraredensayilar;
 
 // 3a çözümü
+enkucuk = sayilar[0];
+enbuyuk = sayilar[0];
+for (let i = 1; i < sayilar.length; i++) {
+  if (sayilar[i] < enkucuk) {
+    enkucuk = sayilar[i];
+  }
+  if (sayilar[i] > enbuyuk) {
+    enbuyuk = sayilar[i];
+  }
+}
+console.log('En küçük sayı:', enkucuk);
+console.log('En büyük sayı:', enbuyuk);
 
-/* kodlar buraya */
+// 3b çözümü
+ucetambolunenler = [];
+sayilar.forEach((sayi) => {
+  if (sayi % 3 === 0) {
+    ucetambolunenler.push(sayi);
+  }
+});
+console.log("3'e tam bölünenler:", ucetambolunenler);
 
-// 3b çözümü:
-
-/* kodlar buraya */
-
-// 3c çözümü:
-
-/* kodlar buraya */
+// 3c çözümü
+ucebolunenlerintoplami = ucetambolunenler.reduce(
+  (toplam, sayi) => toplam + sayi,
+  0
+);
+console.log("3'e tam bölünenlerin toplamı:", ucebolunenlerintoplami);
 
 // 3d çözümü
-
-/* kodlar buraya */
+besyuzdenkucuksayilar = sayilar.filter((sayi) => sayi < 500);
+console.log("500'den küçük sayılar:", besyuzdenkucuksayilar);
 
 // 3e çözümü
-
-/* kodlar buraya */
+siralisayilar = [...besyuzdenkucuksayilar].sort((a, b) => a - b);
+console.log("500'den küçük sayıların sıralı hali:", siralisayilar);
 
 // 3f çözümü
-
-/* kodlar buraya */
-
-/*  Bu satırın aşağısındaki kodları lütfen değiştirmeyin  */
+tekraredensayilar = [];
+const sayiAdetleri = {};
+for (const sayi of sayilar) {
+  sayiAdetleri[sayi] = (sayiAdetleri[sayi] || 0) + 1;
+}
+for (const sayi in sayiAdetleri) {
+  if (sayiAdetleri[sayi] > 1) {
+    tekraredensayilar.push(
+      `${sayi} sayısı ${sayiAdetleri[sayi]} kere tekrar edilmiştir`
+    );
+  }
+}
+console.log('Tekrar eden sayılar:', tekraredensayilar);
 
 function sa() {
   console.log("Kodlar çalışıyor");
@@ -140,4 +170,4 @@ module.exports = {
   besyuzdenkucuksayilar,
   siralisayilar,
   tekraredensayilar,
-};
+}; 
